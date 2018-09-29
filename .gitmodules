@@ -1,0 +1,3 @@
+[submodule "WCDB"]
+	path = WCDB
+	url = https://github.com/Tencent/wcdb.git
