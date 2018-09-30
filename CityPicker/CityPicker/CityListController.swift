@@ -8,23 +8,51 @@
 
 import UIKit
 
-class CityListController: LocationListBaseController {
+public class CityListController: LocationListBaseController {
 
-    override func viewDidLoad() {
+    public var state: LocationModel?
+    
+    override public func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.title = "Cities"
+        
+        self.locationType = .city
+        
+        getCitiesInfo()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func getCitiesInfo() {
+        guard let state = state else {
+            return
+        }
+        
+        let citiesArray = LocationInfoHelper().getCityList(withCountryName: state.country,
+                                                           stateName: state.state)
+        for city in citiesArray {
+            if !sectionKeysArray.contains(city.city_index) {
+                sectionKeysArray.append(city.city_index)
+            }
+            if var tempArray = self.locationInfos[city.city_index] {
+                tempArray.append(city)
+                self.locationInfos[city.city_index] = tempArray
+            } else {
+                self.locationInfos[city.city_index] = [city]
+            }
+        }
+        self.listTable.reloadData()
     }
-    */
 
+    override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let key = sectionKeysArray[indexPath.section]
+        
+        if let dataArray = locationInfos[key] {
+            let dataModel = dataArray[indexPath.row]
+            if let callbackBlock = self.callbackBlock {
+                callbackBlock(dataModel)
+            }
+        }
+    }
+    
 }

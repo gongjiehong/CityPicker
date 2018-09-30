@@ -14,11 +14,18 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        self.title = "Demo"
     }
     
     @IBAction func startPick() {
         let country = CountryListController()
+        country.callbackBlock = { [weak self] (resultModel) -> Void in
+            guard let weakSelf = self else {
+                return
+            }
+            dump(resultModel)
+            weakSelf.navigationController?.popToViewController(weakSelf, animated: true)
+        }
         self.navigationController?.pushViewController(country, animated: true)
     }
     

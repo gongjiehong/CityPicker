@@ -103,6 +103,8 @@
 		FE7140AF215E11E100DC6A34 /* LocationListBaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationListBaseController.swift; sourceTree = "<group>"; };
 		FED68F77215F869300CFE77C /* StateListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateListController.swift; sourceTree = "<group>"; };
 		FED68F79215F869F00CFE77C /* CityListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityListController.swift; sourceTree = "<group>"; };
+		FED68F7B215F8DF300CFE77C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		FED68F7C215F8DF300CFE77C /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -423,6 +425,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				FE71405D215E081C00DC6A34 /* Base */,
+				FED68F7B215F8DF300CFE77C /* zh-Hans */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -431,6 +434,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				FE714062215E081D00DC6A34 /* Base */,
+				FED68F7C215F8DF300CFE77C /* zh-Hans */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -442,6 +446,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -503,6 +508,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

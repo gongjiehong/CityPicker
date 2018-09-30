@@ -28,8 +28,6 @@ public class LocationInfoHelper {
                 return "world_cities_en"
             }
         }
-        
-
     }
     
     private var db: Database!
@@ -72,9 +70,9 @@ public class LocationInfoHelper {
         }
     }
     
-    public func getCityList(withStateName name: String) -> [LocationModel] {
+    public func getCityList(withCountryName country: String,stateName state: String) -> [LocationModel] {
         do {
-            let select = try db.prepareSelect(of: LocationModel.self, fromTable: DBConfigs.tableName).where(LocationModel.CodingKeys.state == name).order(by: LocationModel.CodingKeys.city_index)
+            let select = try db.prepareSelect(of: LocationModel.self, fromTable: DBConfigs.tableName).where(LocationModel.CodingKeys.country == country && LocationModel.CodingKeys.state == state).order(by: LocationModel.CodingKeys.city_index)
             return try select.allObjects()
         } catch  {
             return []

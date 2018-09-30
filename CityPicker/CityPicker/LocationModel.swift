@@ -33,6 +33,6 @@ public class LocationModel: TableCodable {
     }
     
     public var hasChildCity: Bool {
-        return self.country != self.state && self.state != self.city
+        return self.country != self.city || self.state != self.city
     }
 }

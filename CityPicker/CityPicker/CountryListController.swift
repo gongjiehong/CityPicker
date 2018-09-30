@@ -9,7 +9,7 @@
 import UIKit
 import WCDBSwift
 
-class CountryListController: LocationListBaseController {
+public class CountryListController: LocationListBaseController {
     
     lazy var hotCountries: [String] = {
         if languageIsChinese() {
@@ -23,7 +23,7 @@ class CountryListController: LocationListBaseController {
         }
     }()
 
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -62,18 +62,36 @@ class CountryListController: LocationListBaseController {
         self.listTable.reloadData()
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let key = sectionKeysArray[indexPath.section]
         
         if let dataArray = locationInfos[key] {
             let dataModel = dataArray[indexPath.row]
             if dataModel.hasChildState {
-                
+                let statiesList = StateListController()
+                statiesList.country = dataModel
+                statiesList.callbackBlock = { [weak self] (resultModel) -> Void in
+                    guard let weakSelf = self else { return }
+                    if let callbackBlock = weakSelf.callbackBlock {
+                        callbackBlock(resultModel)
+                    }
+                }
+                self.navigationController?.pushViewController(statiesList, animated: true)
             } else if dataModel.hasChildCity {
-                
+                let citiesList = CityListController()
+                citiesList.state = dataModel
+                citiesList.callbackBlock = { [weak self] (resultModel) -> Void in
+                    guard let weakSelf = self else { return }
+                    if let callbackBlock = weakSelf.callbackBlock {
+                        callbackBlock(resultModel)
+                    }
+                }
+                self.navigationController?.pushViewController(citiesList, animated: true)
             } else {
-                
+                if let callbackBlock = self.callbackBlock {
+                    callbackBlock(dataModel)
+                }
             }
         }
     }

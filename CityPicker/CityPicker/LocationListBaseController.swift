@@ -13,6 +13,10 @@ public class LocationListBaseController: UIViewController {
     internal var locationInfos: [String: [LocationModel]] = [:]
     internal var sectionKeysArray: [String] = []
     
+    public typealias CompleteCallbackBlock = (LocationModel) -> Void
+    
+    public var callbackBlock: CompleteCallbackBlock?
+    
     public enum Style {
         case normal
         case dark
@@ -140,11 +144,7 @@ extension LocationListBaseController: UITableViewDelegate, UITableViewDataSource
     }
     
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return 0
-        } else {
-            return 20.0
-        }
+        return 20.0
     }
     
     public func sectionIndexTitles(for tableView: UITableView) -> [String]? {
